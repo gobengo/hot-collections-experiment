@@ -20,7 +20,7 @@ var HottestConvs = window.Hub.HottestConvs = function HottestConvs (opts) {
 				.replace('{{ title }}', conv.title)
 				.replace('{{ heat }}', roundedHeat)
 				.replace('{{ url }}', conv.url) );
-			$ul.prepend($li);
+			$ul.append($li);
 		});
 	})
 	return this;
