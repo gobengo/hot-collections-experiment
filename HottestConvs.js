@@ -1,6 +1,8 @@
 (function (window, $) {
 
-window.HottestConvs = function HottestConvs (opts) {
+if ( ! window.Hub ) window.Hub = {};
+
+var HottestConvs window.Hub.HottestConvs = function HottestConvs (opts) {
 	var self = this;
 	this.el = opts.el;
 	this.$el = $(opts.el);
