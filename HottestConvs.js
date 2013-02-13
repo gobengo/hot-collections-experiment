@@ -18,7 +18,6 @@ window.HottestConvs = function HottestConvs (opts) {
 				.replace('{{ title }}', conv.title)
 				.replace('{{ heat }}', roundedHeat)
 				.replace('{{ url }}', conv.url) );
-			console.log(conv);
 			$ul.prepend($li);
 		});
 	})
