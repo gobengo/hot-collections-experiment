@@ -1,0 +1,11 @@
+{
+  "name": "StreamHub-HottestConvs-Example",
+  "version": "0.0.0",
+  "main": [
+    "./main.js"
+  ],
+  "dependencies": {
+    "jquery": ">1.8",
+    "HottestConvs": "git://github.com/gobengo/StreamHub-HottestConvs.git"
+  }
+}

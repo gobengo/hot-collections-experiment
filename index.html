@@ -34,6 +34,32 @@
 
 <p><a href="http://www.livefyre.com/streamhub/">Livefyre StreamHub</a> is the web's first Engagement Management System. StreamHub turns your site into a real-time social experience. Curate images, videos, and Tweets from across the social web, right into live blogs, chats, widgets, and dashboards. The world's biggest publishers and brands use StreamHub to power their online Content Communities.</p>
 
+<h1>Live Demo</h1>
+
+<h2><span class="tc">TechCrunch</span> Hottest Conversations</h2>
+
+<style>
+.hub-HottestConvs a {
+  font-weight: bold;
+}
+.tc {
+  color: green;
+  font-weight: bold;
+}
+</style>
+
+<div id="example"></div>
+<!-- Scripts -->
+<script src="lib/jquery/jquery.js"></script>
+<!-- Hottest Conversations -->
+<script src="lib/HottestConvs/main.js"></script>
+<script>
+var hottestConvs = new Hub.HottestConvs({
+    network: 'techcrunch.fyre.co',
+    el: document.getElementById('example')
+}).render();
+</script>
+
 <h1>Usage</h1>
 
 <p>Include <code>main.js</code> in your HTML page</p>

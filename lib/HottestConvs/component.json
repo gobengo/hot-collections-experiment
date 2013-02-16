@@ -1,0 +1,9 @@
+{
+  "name": "HottestConvs",
+  "version": "0.0.0",
+  "commit": "b4bed89a869dcb82cfbc4138136127655023b50e",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gobengo/StreamHub-HottestConvs.git"
+  }
+}

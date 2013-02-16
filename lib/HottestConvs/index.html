@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+		.hub-hottest-convs {
+			list-style-type: none;
+			padding-left: 0;
+		}
+		.hub-hottest-convs a {
+			color: rgb(7, 92, 1);
+		}
+		</style>
+	</head>
+	<body>
+		<h1>Hottest Conversations</h1>
+		<div id="example"></div>
+		<!-- Scripts -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<!-- Hottest Conversations -->
+		<script src="main.js"></script>
+		<script>
+		var hottestConvs = new Hub.HottestConvs({
+			network: 'techcrunch.fyre.co',
+			el: document.getElementById('example')
+		}).render();
+		</script>
+	</body>
+</html>
