@@ -16,3 +16,7 @@ Specify a StreamHub `network` and HTML Element `el` to render the widget in
 		network: 'techcrunch.fyre.co',
 		el: document.getElementById('example')
 	}).render();
+
+# Documentation
+
+The code is documented with jsdoc3, and HTML docs can be found at [docs/index.html](docs/index.html)
