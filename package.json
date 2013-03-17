@@ -1,0 +1,12 @@
+{
+  "name": "streamhub-hotcollections",
+  "version": "0.0.0",
+  "devDependencies": {
+    "bower": "*",
+    "http-server": "*"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install",
+    "start": "./node_modules/http-server/bin/http-server ."
+  }
+}
