@@ -23,6 +23,11 @@ var HotCollections = window.Hub.HotCollections = function HotCollections (opts) 
 	this.network = opts.network;
 	this.template = opts.template || HotCollections.template;
 	this.collectionTemplate = opts.collectionTemplate || HotCollections.collectionTemplate;
+
+	// Render initial HTML into element
+	this.$el.html(this.template);
+
+	// Request the heat API and render results
 	var reqXhr = HotCollections.request(opts);
 	reqXhr.success(function (resp) {
 		var data = resp.data,
@@ -36,7 +41,8 @@ var HotCollections = window.Hub.HotCollections = function HotCollections (opts) 
 				.replace('{{ url }}', collection.url) );
 			$ul.append($li);
 		});
-	})
+	});
+
 	return this;
 };
 
@@ -59,13 +65,6 @@ HotCollections.request = function (opts) {
 	var url = 'http://bootstrap.'+ opts.network +'/api/v3.0/hottest/',
 		jqXhr = $.get(url);
 	return jqXhr;
-};
-
-/**
- * Render the widget HTML into this.$el. This is important.
- */
-HotCollections.prototype.render = function () {
-	this.$el.html(this.template);
 };
 
 /**
