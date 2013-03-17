@@ -35,7 +35,7 @@ var HotCollections = window.Hub.HotCollections = function HotCollections (opts) 
 		$(data).each(function (index, collection) {
 			var $li = $('<li></li>'),
 				roundedHeat = roundNumber(collection.heat, 2);
-			$li.html(HotCollections.collectionTemplate
+			$li.html(self.collectionTemplate
 				.replace('{{ title }}', collection.title)
 				.replace('{{ heat }}', roundedHeat)
 				.replace('{{ url }}', collection.url) );
