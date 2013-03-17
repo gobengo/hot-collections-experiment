@@ -13,16 +13,22 @@ if ( ! window.Hub ) window.Hub = {};
  * @param {Object} opts - Options
  * @param {HTMLElement} opts.el - An HTML Element to render in
  * @param {String} opts.network - The StreamHub Network to show Collections from
- * @param {String} opts.template - A template to use for the element housing the widget
+ * @param {String?} opts.template - A template to use for the element housing the widget
  * @param {String} opts.collectionTemplate - A template to use for the element for each Conllection
+ * @param {String?} opts.tag - Request only Hot Collections with this tag
+ * @param {String?} opts.siteId - Request only Collections from this Livefyre Site ID
  */
 var HotCollections = window.Hub.HotCollections = function HotCollections (opts) {
-	var self = this;
+	var opts = opts || {},
+		self = this;
+
 	this.el = opts.el;
 	this.$el = $(opts.el);
 	this.network = opts.network;
 	this.template = opts.template || HotCollections.template;
 	this.collectionTemplate = opts.collectionTemplate || HotCollections.collectionTemplate;
+	this.tag = opts.tag || null;
+	this.siteId = opts.siteId || null
 
 	// Render initial HTML into element
 	this.$el.html(this.template);
@@ -60,11 +66,19 @@ function roundNumber(number, digits) {
  * Create a jQuery XHR Object for a HotCollections request.
  * @param {Object} opts - Options
  * @param {String} opts.network - The StreamHub Network to request Hot Collections from
+ * @param {String?} opts.tag - Request only Hot Collections with this tag
+ * @param {String?} opts.siteId - Request only Collections from this Livefyre Site ID
  */
 HotCollections.request = function (opts) {
 	var url = 'http://bootstrap.'+ opts.network +'/api/v3.0/hottest/',
-		jqXhr = $.get(url);
-	return jqXhr;
+		params = {},
+		tag = opts.tag,
+		siteId = opts.siteId;
+
+	if (tag) params.tag = tag;
+	if (siteId) params.site = siteId;
+
+	return $.get(url, params);
 };
 
 /**
