@@ -12,10 +12,10 @@ Include `main.js` in your HTML page
 
 Specify a StreamHub `network` and HTML Element `el` to render the widget in
 
-	var hottestConvs = new Hub.HottestConvs({
+	var hotCollectionsWidget = new Hub.HotCollections({
 		network: 'techcrunch.fyre.co',
 		el: document.getElementById('example')
-	}).render();
+	});
 
 # Documentation
 
