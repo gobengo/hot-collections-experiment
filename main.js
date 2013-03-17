@@ -6,34 +6,34 @@
 if ( ! window.Hub ) window.Hub = {};
 
 /**
- * HottestConvs displays a list of the Hottest Conversations (Collections) in a
+ * HotCollections displays a list of Hot Collections in a
  * StreamHub Network
- * @constructor Hub.HottestConvs
- * @alias module:Hub.HottestConvs
+ * @constructor Hub.HotCollections
+ * @alias module:Hub.HotCollections
  * @param {Object} opts - Options
  * @param {HTMLElement} opts.el - An HTML Element to render in
  * @param {String} opts.network - The StreamHub Network to show Collections from
  * @param {String} opts.template - A template to use for the element housing the widget
- * @param {String} opts.convTemplate - A template to use for the element for each Conllection
+ * @param {String} opts.collectionTemplate - A template to use for the element for each Conllection
  */
-var HottestConvs = window.Hub.HottestConvs = function HottestConvs (opts) {
+var HotCollections = window.Hub.HotCollections = function HotCollections (opts) {
 	var self = this;
 	this.el = opts.el;
 	this.$el = $(opts.el);
 	this.network = opts.network;
-	this.template = opts.template || HottestConvs.template;
-	this.convTemplate = opts.convTemplate || HottestConvs.convTemplate;
-	var reqXhr = HottestConvs.request(opts);
+	this.template = opts.template || HotCollections.template;
+	this.collectionTemplate = opts.collectionTemplate || HotCollections.collectionTemplate;
+	var reqXhr = HotCollections.request(opts);
 	reqXhr.success(function (resp) {
 		var data = resp.data,
-			$ul = self.$el.find('.hub-hottest-convs');
-		$(data).each(function (index, conv) {
+			$ul = self.$el.find('.hub-collection-list');
+		$(data).each(function (index, collection) {
 			var $li = $('<li></li>'),
-				roundedHeat = roundNumber(conv.heat, 2);
-			$li.html(HottestConvs.convTemplate
-				.replace('{{ title }}', conv.title)
+				roundedHeat = roundNumber(collection.heat, 2);
+			$li.html(HotCollections.collectionTemplate
+				.replace('{{ title }}', collection.title)
 				.replace('{{ heat }}', roundedHeat)
-				.replace('{{ url }}', conv.url) );
+				.replace('{{ url }}', collection.url) );
 			$ul.append($li);
 		});
 	})
@@ -51,11 +51,11 @@ function roundNumber(number, digits) {
 }
 
 /**
- * Create a jQuery XHR Object for a HottestConvs request.
+ * Create a jQuery XHR Object for a HotCollections request.
  * @param {Object} opts - Options
- * @param {String} opts.network - The StreamHub Network to request Hot Convs for
+ * @param {String} opts.network - The StreamHub Network to request Hot Collections from
  */
-HottestConvs.request = function (opts) {
+HotCollections.request = function (opts) {
 	var url = 'http://bootstrap.'+ opts.network +'/api/v3.0/hottest/',
 		jqXhr = $.get(url);
 	return jqXhr;
@@ -64,18 +64,18 @@ HottestConvs.request = function (opts) {
 /**
  * Render the widget HTML into this.$el. This is important.
  */
-HottestConvs.prototype.render = function () {
+HotCollections.prototype.render = function () {
 	this.$el.html(this.template);
 };
 
 /**
  * The Template to use for the widget itself. Used by `.render()`
  */
-HottestConvs.template = '<div class="hub-HottestConvs"><ul class="hub-hottest-convs"></ul></div>';
+HotCollections.template = '<div class="hub-HotCollections"><ul class="hub-collection-list"></ul></div>';
 
 /**
- * The template to use for each of the Hottest Convs
+ * The template to use for each of the Hot Collections
  */
-HottestConvs.convTemplate = '<li>{{ heat }} - <a href="{{ url }}" target="_blank">{{ title }}</a></li>';
+HotCollections.collectionTemplate = '<li>{{ heat }} - <a href="{{ url }}" target="_blank">{{ title }}</a></li>';
 
 }(this, jQuery));

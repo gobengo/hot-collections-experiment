@@ -2,11 +2,11 @@
 <html>
 	<head>
 		<style>
-		.hub-hottest-convs {
+		.hub-collection-list {
 			list-style-type: none;
 			padding-left: 0;
 		}
-		.hub-hottest-convs a {
+		.hub-collection-list a {
 			color: rgb(7, 92, 1);
 		}
 		</style>
@@ -16,10 +16,10 @@
 		<div id="example"></div>
 		<!-- Scripts -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<!-- Hottest Conversations -->
+		<!-- Hot Collections -->
 		<script src="main.js"></script>
 		<script>
-		var hottestConvs = new Hub.HottestConvs({
+		var hotCollections = new Hub.HotCollections({
 			network: 'techcrunch.fyre.co',
 			el: document.getElementById('example')
 		}).render();
