@@ -15,13 +15,14 @@
 		<h1>Hottest Conversations</h1>
 		<div id="example"></div>
 		<!-- Scripts -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 		<!-- Hot Collections -->
 		<script src="main.js"></script>
 		<script>
 		var hotCollections = new Hub.HotCollections({
 			network: 'techcrunch.fyre.co',
-			el: document.getElementById('example')
+			el: document.getElementById('example'),
+			maxResults: "7"
 		});
 		</script>
 	</body>
