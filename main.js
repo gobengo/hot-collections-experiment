@@ -17,6 +17,7 @@ if ( ! window.Hub ) window.Hub = {};
  * @param {String} opts.collectionTemplate - A template to use for the element for each Conllection
  * @param {String?} opts.tag - Request only Hot Collections with this tag
  * @param {String?} opts.siteId - Request only Collections from this Livefyre Site ID
+ * @param {String?} opts.maxResults - Return n results up to the number of maxResults
  */
 var HotCollections = window.Hub.HotCollections = function HotCollections (opts) {
 	var opts = opts || {},
@@ -29,6 +30,7 @@ var HotCollections = window.Hub.HotCollections = function HotCollections (opts) 
 	this.collectionTemplate = opts.collectionTemplate || HotCollections.collectionTemplate;
 	this.tag = opts.tag || null;
 	this.siteId = opts.siteId || null
+	this.maxResults = opts.maxResults || null;
 
 	// Render initial HTML into element
 	this.$el.html(this.template);
@@ -68,15 +70,18 @@ function roundNumber(number, digits) {
  * @param {String} opts.network - The StreamHub Network to request Hot Collections from
  * @param {String?} opts.tag - Request only Hot Collections with this tag
  * @param {String?} opts.siteId - Request only Collections from this Livefyre Site ID
+ * @param {String?} opts.maxResults - Return n results up to the number of maxResults
  */
 HotCollections.request = function (opts) {
 	var url = 'http://bootstrap.'+ opts.network +'/api/v3.0/hottest/',
 		params = {},
 		tag = opts.tag,
-		siteId = opts.siteId;
+		siteId = opts.siteId,
+		maxResults = opts.maxResults;
 
 	if (tag) params.tag = tag;
 	if (siteId) params.site = siteId;
+	if (maxResults) params.number =  maxResults;
 
 	return $.get(url, params);
 };
