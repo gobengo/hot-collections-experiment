@@ -14,7 +14,7 @@ if ( ! window.Hub ) window.Hub = {};
  * @param {HTMLElement} opts.el - An HTML Element to render in
  * @param {String} opts.network - The StreamHub Network to show Collections from
  * @param {String?} opts.template - A template to use for the element housing the widget
- * @param {String} opts.collectionTemplate - A template to use for the element for each Conllection
+ * @param {String} or {Function} opts.collectionTemplate - A template to use for the element for each Collection
  * @param {String?} opts.tag - Request only Hot Collections with this tag
  * @param {String?} opts.siteId - Request only Collections from this Livefyre Site ID
  * @param {String?} opts.maxResults - Return n results up to the number of maxResults
@@ -40,13 +40,19 @@ var HotCollections = window.Hub.HotCollections = function HotCollections (opts) 
 	reqXhr.success(function (resp) {
 		var data = resp.data,
 			$ul = self.$el.find('.hub-collection-list');
+		
 		$(data).each(function (index, collection) {
 			var $li = $('<li></li>'),
 				roundedHeat = roundNumber(collection.heat, 2);
-			$li.html(self.collectionTemplate
-				.replace('{{ title }}', collection.title)
-				.replace('{{ heat }}', roundedHeat)
-				.replace('{{ url }}', collection.url) );
+			if (typeof self.collectionTemplate == "function") {
+				$li.html(self.collectionTemplate(collection));
+			}
+			else {
+				$li.html(self.collectionTemplate
+					.replace('{{ title }}', collection.title)
+					.replace('{{ heat }}', roundedHeat)
+					.replace('{{ url }}', collection.url) );
+			}
 			$ul.append($li);
 		});
 	});
